@@ -12,14 +12,23 @@ const Pagination = () => {
   }, []);
 
   const fetchData = async () => {
-    try {
-      const response = await axios.get(
-        'https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json'
-      );
-      setData(response.data);
-    } catch (error) {
-      alert('failed data fetch');
-    }
+    // try {
+    //   const response = await axios.get(
+    //     'https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json'
+    //   );
+    //   setData(response.data);
+    // } catch (error) {
+    //   alert('failed data fetch');
+    // }
+    axios.get('https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json')
+
+    .then(response => {
+        setData(response.data);
+    })
+    .catch(error => {
+        alert("Failed to fetch data")
+    });
+
   };
 
   const indexOfLastItem = currentPage * itemsPerPage;
